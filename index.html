@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人网页</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav>
+    <!-- 左侧4个按钮 -->
+    <ul>
+      <li><a id="nav-home" href="#home">首页</a></li>
+      <li><a id="nav-personal" href="#personal">个人</a></li>
+      <li><a id="nav-resume" href="#resume">简历</a></li>
+      <li><a id="nav-contact" href="#contact">联系方式</a></li>
+    </ul>
+
+    <!-- 右侧昼夜切换 + 国旗图标 -->
+    <div class="nav-right">
+      <!-- 昼夜切换按钮 -->
+      <div class="toggle-container">
+        <input type="checkbox" id="toggle" class="toggle--checkbox">
+        <label for="toggle" class="toggle--label">
+          <span class="toggle--label-background"></span>
+        </label>
+      </div>
+      <!-- 国旗图标 -->
+      <div class="lang-flags">
+        <img 
+          src="language_chinese.png" 
+          alt="中文" 
+          id="lang-chinese" 
+          class="lang-flag"
+        >
+        <img 
+          src="language_english.png" 
+          alt="English" 
+          id="lang-english" 
+          class="lang-flag"
+        >
+      </div>
+    </div>
+  </nav>
+  
+  <!-- 各屏内容 -->
+  <section id="home">
+    <div class="content" id="home-greeting">:D 你好</div>
+  </section>
+  
+  <section id="personal">
+    <div class="content">
+      <h1 id="personal-title">个人信息</h1>
+      <p id="personal-content">这里可以放置你的个人简介、爱好或者其他相关介绍文字。你可以根据需要进行修改和扩展。</p>
+    </div>
+  </section>
+  
+  <section id="resume">
+    <div class="content">
+      <h1 id="resume-title">简历</h1>
+      <p id="resume-content">在这里展示你的工作经历、教育背景和其他成就。</p>
+    </div>
+  </section>
+  
+  <section id="contact">
+    <div class="content">
+      <h1 id="contact-title">联系方式</h1>
+      <p id="contact-content">这里将展示你的联系方式，如邮箱、电话等信息。</p>
+    </div>
+  </section>
+  
+  <script src="script.js"></script>
+</body>
+</html>

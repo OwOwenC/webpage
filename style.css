@@ -1,0 +1,328 @@
+:root {
+  /* 颜色变量保持不变 */
+  --blue-background: #C2E9F6;
+  --blue-border: #72cce3;
+  --blue-color: #96dcee;
+  --yellow-background: #fffaa8;
+  --yellow-border: #f5eb71;
+  --indigo-background: #808fc7;
+  --indigo-border: #5d6baa;
+  --indigo-color: #6b7abb;
+  --gray-border: #e8e8ea;
+  --gray-dots: #e8e8ea;
+  --white: #fff;
+}
+
+/* 重置及基本样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: Arial, sans-serif;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+/* ------------------------------
+   导航栏基础样式 (通用)
+------------------------------ */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 62.5px; /* 固定高度不变 */
+  background: var(--blue-background);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  padding: 5px 10px;
+  transition: color 0.3s;
+}
+nav ul li a:hover {
+  color: #007BFF;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ------------------------------
+   桌面端布局 (desktop)
+   - 左侧占 1/3, 右侧占 1/5
+   - 减小昼夜切换按钮 & 国旗图标
+------------------------------ */
+.desktop nav {
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.desktop nav ul {
+  width: 33.3333%; /* 左侧 1/3 */
+  display: flex;
+  justify-content: space-around;
+}
+.desktop .nav-right {
+  width: 20%;       /* 右侧 1/5 */
+  justify-content: flex-end;
+}
+/* 缩小昼夜切换按钮 */
+.desktop .toggle-container {
+  transform: scale(0.3); /* 比原先0.4更小 */
+  transform-origin: center;
+}
+/* 国旗图标：定宽缩小 */
+.desktop .lang-flags {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  gap: 10px;
+}
+.desktop .lang-flag {
+  width: 24px;   /* 缩小为24px宽 */
+  height: auto;  /* 高度自适应 */
+  cursor: pointer;
+}
+
+/* ------------------------------
+   移动端布局 (mobile)
+   - 左侧占 4/5, 右侧占 1/5
+   - 纵向排列昼夜切换 & 国旗
+   - 再次等比缩小
+------------------------------ */
+.mobile nav {
+  justify-content: space-between;
+  padding: 0 10px;
+}
+.mobile nav ul {
+  width: 80%; /* 左侧 4/5 */
+  display: flex;
+  justify-content: space-around;
+}
+.mobile .nav-right {
+  width: 20%; /* 右侧 1/5 */
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+}
+/* 移动端：再度缩小昼夜切换 & 国旗 */
+.mobile .toggle-container {
+  transform: scale(0.2); 
+  transform-origin: center;
+  margin-bottom: 5px;
+}
+.mobile .lang-flags {
+  display: flex;
+  flex-direction: row; /* 两个国旗横排 */
+  align-items: center;
+  gap: 5px;
+  transform: scale(0.2); 
+  transform-origin: center;
+}
+.mobile .lang-flag {
+  width: 24px;
+  height: auto;
+  cursor: pointer;
+}
+
+/* ------------------------------
+   页面各部分样式 (保持不变)
+------------------------------ */
+section {
+  min-height: 100vh;
+  padding-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+#home {
+  background: url('your-image.jpg') no-repeat center center/cover;
+}
+#home::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+#home .content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-size: 48px;
+  text-align: center;
+}
+#personal {
+  background-color: #f4f4f4;
+  color: #333;
+  flex-direction: column;
+  padding: 20px;
+}
+#resume {
+  background-color: #e2e2e2;
+  color: #333;
+  padding: 20px;
+}
+#contact {
+  background-color: #d0d0d0;
+  color: #333;
+  padding: 20px;
+}
+
+/* 昼夜切换模块原有样式 */
+.toggle--checkbox {
+  display: none;
+}
+.toggle--checkbox:checked ~ .background {
+  background: var(--indigo-background);
+}
+.toggle--checkbox:checked + .toggle--label {
+  background: var(--indigo-color);
+  border-color: var(--indigo-border);
+}
+.toggle--checkbox:checked + .toggle--label .toggle--label-background {
+  left: 60px;
+  width: 5px;
+}
+.toggle--checkbox:checked + .toggle--label .toggle--label-background:before {
+  width: 5px;
+  height: 5px;
+  top: -25px;
+}
+.toggle--checkbox:checked + .toggle--label .toggle--label-background:after {
+  width: 5px;
+  height: 5px;
+  left: -30px;
+  top: 20px;
+}
+.toggle--checkbox:checked + .toggle--label:before {
+  background: var(--white);
+  border-color: var(--gray-border);
+  animation-name: switch;
+  animation-duration: 350ms;
+  animation-fill-mode: forwards;
+}
+.toggle--checkbox:checked + .toggle--label:after {
+  transition-delay: 350ms;
+  opacity: 1;
+}
+.toggle--label {
+  width: 200px;
+  height: 100px;
+  background: var(--blue-color);
+  border-radius: 100px;
+  border: 5px solid var(--blue-border);
+  display: flex;
+  position: relative;
+  transition: all 350ms ease-in;
+}
+.toggle--label-background {
+  width: 10px;
+  height: 5px;
+  border-radius: 5px;
+  position: relative;
+  background: var(--white);
+  left: 135px;
+  top: 45px;
+  transition: all 150ms ease-in;
+}
+.toggle--label-background:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  width: 40px;
+  height: 5px;
+  border-radius: 5px;
+  background: var(--white);
+  left: -20px;
+  transition: all 150ms ease-in;
+}
+.toggle--label-background:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  width: 40px;
+  height: 5px;
+  border-radius: 5px;
+  background: var(--white);
+  left: -10px;
+  transition: all 150ms ease-in;
+}
+.toggle--label:before {
+  animation-name: reverse;
+  animation-duration: 350ms;
+  animation-fill-mode: forwards;
+  transition: all 350ms ease-in;
+  content: "";
+  width: 82px;
+  height: 82px;
+  box-shadow: inset 0 0 0 5px var(--yellow-border);
+  top: 4px;
+  left: 4px;
+  position: absolute;
+  border-radius: 82px;
+  background: var(--yellow-background);
+}
+.toggle--label:after {
+  transition-delay: 0ms;
+  transition: all 250ms ease-in;
+  position: absolute;
+  content: "";
+  box-shadow: var(--gray-dots) -13px 0 0 2px, var(--gray-dots) -24px 14px 0 -2px;
+  left: 143px;
+  top: 23px;
+  width: 10px;
+  height: 10px;
+  background: transparent;
+  border-radius: 50%;
+  opacity: 0;
+}
+/* 外框变灰 */
+.toggle--checkbox:checked + .toggle--label:before {
+  box-shadow: inset 0 0 0 5px var(--gray-border);
+}
+
+@keyframes switch {
+  0% {
+    left: 4px;
+  }
+  60% {
+    left: 4px;
+    width: 112px;
+  }
+  100% {
+    left: 104px;
+    width: 82px;
+  }
+}
+@keyframes reverse {
+  0% {
+    left: 104px;
+    width: 82px;
+  }
+  60% {
+    left: 72px;
+    width: 112px;
+  }
+  100% {
+    left: 4px;
+  }
+}
